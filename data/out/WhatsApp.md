@@ -1,9 +1,10 @@
 ---
-name: "WhatsApp"
-categories: ['comms']
-link: https://apps.microsoft.com/detail/9nksqgp7f2nh?hl=en-us&gl=US
+name: WhatsApp
+icon: WhatsApp.svg
+categories: [comms, app, msstore]
+link: https://www.microsoft.com/store/productid/9NKSQGP7F2NH
 compatibility: emulation
-versionFrom: "2.233.7.0"
-type: applications
+versionFrom: "2.2300.0.0"
 ---
 
+WhatsApp announced at Microsoft Build that an Arm64 native version is coming in 2023

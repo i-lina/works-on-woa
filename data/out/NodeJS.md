@@ -1,9 +1,8 @@
 ---
-name: "Node.JS"
-categories: ['app']
-link: https://nodejs.org/dist/v20.5.1/node-v20.5.1-arm64.msi
+name: node.js
+icon: node.svg
+categories: [oss, dev-tools]
+link: https://nodejs.org/
 compatibility: native
-versionFrom: "20.5.1"
-type: applications
+versionFrom: "20.0"
 ---
-

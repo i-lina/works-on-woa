@@ -1,9 +1,9 @@
 ---
-name: "MSFT Notepad++"
+name: "Microsoft Notepad"
 categories: ['app']
-link: https://notepad-plus-plus.org/downloads/v8.5/
+link: https://apps.microsoft.com/detail/9msmlrh6lzf3 
 compatibility: native
 versionFrom: "v8.5.6"
-type: applications
+icon: MicrosoftNotepad.png
 ---
 
