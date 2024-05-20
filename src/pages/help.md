@@ -30,4 +30,24 @@ For games, the **Compatibility** field can be one of the following values:
 | runs       | Runs with bugs that may affect gaming experience |
 | unplayable | Does not run due to anti-cheat or other failures |
 
+In each game, you'll see the following fields. Below, we've defined what they mean.
+
+**Frame Rate:** The frames per second of the game
+
+**Device Configuration:** The device used to test the game
+
+**OS Version:** The Windows OS version that the game was tested on
+
+**Driver ID:** The graphics driver that the game was tested on
+
+**Compatibility Details:** Any further information on how a game runs or not
+
+**Auto Super Resolution:** Auto SR uses AI to upscale the resolution of a game, letting you have better FPS with enhanced visual qualitly in a game. 
+
+**Auto SR Compatability:** Auto SR out-of-box means it will run without having to change any settings. Opt-in means that you need to opt-in to the game via Windows Settings.
+
+**Auto SR FPS Boost:** Describes how much FPS Boost you can expect with Auto SR enabled.
+
+To see games that are compatible with Automatic Super Resolution, select the "yes, out-of-box," and "yes, opt-in" entries from the Auto SR drop-down menu found to the right of the search bar on the games page. 
+
 Information on how you can make your own contribution to this web site, either for a game or application that is not yet listed, or by adding your own report to an existing game or application, please read [Contributing](/contributing).

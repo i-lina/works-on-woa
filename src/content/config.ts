@@ -47,11 +47,13 @@ const games = defineCollection({
       compatibility_details: z.string().optional(),
       auto_super_resolution: z
         .object({
-          compatibility: z.enum(["yes, out-of-box", "yes, opt-in", "no", "unknown"]),
-          fps_boost: z.string().optional(),
-          opt_in_steps: z.string().optional(),
+          compatibility: z.enum(["yes, out-of-box", "yes, opt-in", "no", "unknown"]).default("unknown"),
+          fps_boost: z.string().optional().default("N/A"),
+          opt_in_steps: z.string().optional().default("N/A"),
         })
-        .optional(),
+        .optional().default({
+          compatibility: "unknown",
+        }),
       link: z.string().url().optional(),
     }),
 });
@@ -71,9 +73,9 @@ const user_reports_games = defineCollection({
     compatibility: z.enum(["perfect", "playable", "runs", "unplayable"]),
     auto_super_resolution: z
       .object({
-        compatibility: z.enum(["yes", "no", "N/A"]),
-        enablement: z.enum(["opt-in", "N/A"]),
+        compatibility: z.enum(["yes, opt-in", "no", "unknown"]),
         fps_boost: z.string().optional(),
+        opt_in_steps: z.string().optional()
       })
       .optional(),
   }),

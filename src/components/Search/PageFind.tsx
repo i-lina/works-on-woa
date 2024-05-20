@@ -21,6 +21,10 @@ export type SearchQuery = { query: string | null; filters: Filters };
 export type Results = {
   results: any[];
   totalFilters: {
+    auto_super_resolution: {
+      compatibility: "yes, opt-in"| "yes, out-of-box"  |  "no" | "unknown";
+      opt_in_steps: "N/A"
+    };    
     category: Record<
       CollectionEntry<
         "applications_categories" | "games_categories"
@@ -34,6 +38,10 @@ export type Results = {
     >;
   };
   filters: {
+    auto_super_resolution: {
+      compatibility: "yes, opt-in"| "yes, out-of-box"  |  "no" | "unknown";
+      opt_in_steps: "N/A"
+    };
     category: Record<
       CollectionEntry<
         "applications_categories" | "games_categories"
@@ -55,11 +63,25 @@ const fetchResults = async ({
   query: string | null;
   filters: Filters;
 }) => {
+
+  let adjustedAutoSR: {[key: string]: string[]}= { 
+    "any": filters["auto_super_resolution.compatibility"]
+  }
+
+  if(filters["auto_super_resolution.compatibility"] && filters["auto_super_resolution.compatibility"].includes("unknown")){
+    adjustedAutoSR = {
+      "not": ["yes, out-of-box", "yes, opt-in", "no"]
+    }
+  }
+
   return await pagefind.debouncedSearch(query, {
     filters: {
       ...filters,
-      category: { any: filters.category },
-      compatibility: { any: filters.compatibility },
+      "category": { any: filters.category },
+      "compatibility": { any: filters.compatibility },
+      "auto_super_resolution.compatibility": { 
+        "any": filters["auto_super_resolution.compatibility"]
+      }
     },
     sort: query
       ? undefined
@@ -82,6 +104,9 @@ const getQueryParams = ({ filters, query }: SearchQuery) => {
   if (filters.compatibility?.length > 0) {
     url.searchParams.append("compatibility", filters.compatibility.join(","));
   }
+  if (filters.auto_super_resolution?.length > 0) {
+    url.searchParams.append("auto_super_resolution", filters.auto_super_resolution.join(","));
+  }
   return url;
 };
 
@@ -89,9 +114,11 @@ const PageFind = ({
   shouldRedirect,
   categories,
   type,
+  auto_super_resolution
 }: {
   shouldRedirect: boolean;
   type: "games" | "applications";
+  auto_super_resolution: "yes, out-of-box"| "yes, opt-in" | "no" | "unknown";
   categories: (
     | CollectionEntry<"games_categories">
     | CollectionEntry<"applications_categories">
@@ -104,6 +131,7 @@ const PageFind = ({
       query: url.searchParams.get("query"),
       category: url.searchParams.get("category")?.split(","),
       compatibility: url.searchParams.get("compatibility")?.split(","),
+      auto_super_resolution: url.searchParams.get("auto_super_resolution")?.split(","),
       page: url.searchParams.get("page"),
     };
   });
@@ -120,6 +148,7 @@ const PageFind = ({
     filters: {
       category: pathParams().category ?? [],
       compatibility: pathParams().compatibility ?? [],
+      auto_super_resolution: pathParams().auto_super_resolution ?? [],
       type: [type],
     },
   });
@@ -144,6 +173,7 @@ const PageFind = ({
         ],
       },
     };
+
     setSearch(newSearch);
     setRequest(newSearch);
     setPage(1);
@@ -173,6 +203,7 @@ const PageFind = ({
     filters: {
       category: pathParams().category ?? [],
       compatibility: pathParams().compatibility ?? [],
+      auto_super_resolution: pathParams().auto_super_resolution ?? [],
       type: [type],
     },
   });

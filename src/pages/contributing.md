@@ -70,17 +70,17 @@ Users can add their own findings regarding an application that has been added to
 | `icon` | string | Optional. The path to the icon file to use, relative to `public/icons`. 512x512 maximum. Use SVG if possible. |
 | `categories` | list | A list of one or more categories that the game belongs to. A list of categories can be found in `src/content/gamess_categories`. Categories are referenced by their file name in this folder. |
 | `publisher` | string | Optional. The name of the game's publisher. |
-| `frame_rate` | string | Optional. Supported frame rates. |
-| `device_configuration` | string | Optional. Supported configurations. |
-| `os_version` | string | Optional. Supported OS versions. |
-| `driver_id` | string | Optional. |
+| `frame_rate` | string | Optional. Frames per second of the game. |
+| `device_configuration` | string | Optional. Device used to test the game. |
+| `os_version` | string | Optional. OS version used to test the game. |
+| `driver_id` | string | Optional. ID of graphics driver used to test the game. |
 | `date_tested` | date | Optional. Format is `YYYY-MM-DD` |
-| `compatibility` | enum <ul><li>`perfect`<li>`playable`<li>`runs`<li>`unplayable`</ul> | How well the game plays. |
+| `compatibility` | enum <ul><li>`perfect`<li>`playable`<li>`runs`<li>`unplayable`</ul> | How well the game plays. See help page for more information on how these are defined. |
 | `compatibility_details` | string | Optional. Any additional information about the compatibility. |
 | `auto_super_resolution` | block | Optional. See example below for syntax. |
-| - `compatibility` | enum <ul><li>`yes`<li>`no`<li>`N/A`</ul> | Indicate compatibility with auto super resolution feature. |
-| - `enablement` | enum <ul><li>`out of box`<li>`opt-in`<li>`N/A`</ul> | Indicate how it is enabled in the game. |
-| - `fps_boost` | string | Optional. |
+| - `compatibility` | enum <ul><li>`yes, out-of-box`<li>`yes, opt-in`<li>`no` <li> `unknown` </ul> | Optional. Indicates compatibility with Auto Super Resolution feature. Opt-in means you need to enable the feature in Windows Settings, and out-of-box means that Auto SR is applied without changing any settings. |
+| - `fps_boost` | string | Optional. How much Auto SR boosts the frame rate of a game by. |
+| - `opt-in steps` | string | Optional. Steps on how to enable Auto SR for games that are opt-in. |
 | `link` | URL | A link to where the software can be downloaded, or the application's main website. |
 
 The `auto_super_resolution` block is optional but, if present, the attributes `compatibility` and `enablement` **must** be present. The block is formatted like this:
@@ -99,18 +99,18 @@ Users can add their own findings regarding a game that has been added to this si
 |-|-|-|
 | `reporter` | string | Optional. Your name. |
 | `game` | string | The name of the game from its own filename, i.e. **without** the `.md` extension |
-| `device_configuration` | string | Optional. Any information about your configuration that may have an influence on the report. |
+| `device_configuration` | string | Optional. The name of the device that you used. |
 | `date_tested` | date | Optional. Format is `YYYY-MM-DD` |
-| `compatibility_details` | string | Your report of how the application ran for you. |
 | `os_version` | string | Optional. The OS version on your system. |
-| `driver_id` | string | Optional. |
-| `compatibility` | enum <ul><li>`perfect`<li>`playable`<li>`runs`<li>`unplayable`</ul> | How well the game plays. |
+| `driver_id` | string | Optional. The graphics driver id on your system. |
+| `compatibility` | enum <ul><li>`perfect`<li>`playable`<li>`runs`<li>`unplayable`</ul> | How well the game plays. See help page for more information on how these are defined. |
+| `compatibility_details` | string | Your report of how the application ran for you. |
 | `auto_super_resolution` | block | Optional. |
-| - `compatibility` | enum <ul><li>`yes`<li>`no`<li>`N/A`</ul> | Indicate compatibility with auto super resolution feature. |
-| - `enablement` | enum <ul><li>`opt-in`<li>`N/A`</ul> | Indicate how it is enabled in the game. |
-| - `fps_boost` | string | Optional. |
+| - `compatibility` | enum <ul><li>`yes, opt-in`<li>`no`<li>`unknown`</ul> |  Indicates compatibility with Auto Super Resolution feature. Opt-in means you need to enable the feature in Windows Settings. |
+| - `fps_boost` | string | How much Auto SR boosts the frame rate of a game by. |
+| - `opt-in steps` | string | Optional. Steps on how to enable Auto SR for games that are opt-in. |
 
-Note that for user game reports, auto super resolution enablement can only be `opt-in` or `N/A`.
+Note that for user game reports, auto super resolution enablement can only be `opt-in` or `no`, or `unknown`.
 
 ### Categories
 

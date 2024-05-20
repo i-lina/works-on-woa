@@ -23,6 +23,17 @@ const getProject = async (result: any) => {
 
 const PAGE_SIZE = 10;
 
+const AutoSRFormatMap: {[key: string]: string} = {
+  "yes, out-of-box" : "Yes, out-of-box",
+  "yes, opt-in": "Yes, opt-in",
+  "no": "No",
+  "unknown" : "Unknown"
+}
+
+const formartAutoSR = (x: string) => {
+  return AutoSRFormatMap[x]
+}
+
 const Result = ({
   result,
   onClickFilterLink,
@@ -92,8 +103,8 @@ const Result = ({
                   </span>
                 </p>
                 <p>
-                  <b>Publisher: </b>
-                  <span>{project()?.meta.publisher}</span>
+                  <b>Auto SR: </b>
+                  <span>{formartAutoSR(project()?.filters["auto_super_resolution.compatibility"]) ?? "Unknown" }</span>
                 </p>
                 <Show when={project()?.meta.date_tested != null}>
                   <p>
