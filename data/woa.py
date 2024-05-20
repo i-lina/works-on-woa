@@ -50,7 +50,7 @@ for i, row in df.iterrows():
     f.write('\ncategories: ' + category)
     if not str(d['link']) == 'No Hyperlink':
         f.write('\nlink: ' + str(d['link']))
-    f.write('\ncompatibility: ' + d['Compatibility'])
+    f.write('\ncompatibility: ' + str(d['Compatibility']))
     if not (ver == 'TBD' or ver == 'NA') :
         f.write('\nversionFrom: \"' + str(d['VersionFrom']) + '\"')
     f.write('\ntype: applications')
