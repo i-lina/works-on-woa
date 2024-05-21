@@ -135,10 +135,7 @@ const { Content } = await render();
               <b>Compatible: </b>
               <span data-pagefind-filter="auto_super_resolution.compatibility">{auto_super_resolution.compatibility}</span>
             </li>
-            <li>
-              <b>Opt In Steps: </b>
-              <span>{auto_super_resolution.opt_in_steps}</span>
-            </li>
+            
             {auto_super_resolution.fps_boost && (
               <li>
                 <b>FPS Boost: </b>
@@ -146,6 +143,14 @@ const { Content } = await render();
               </li>
             )}
           </ul>
+          <li>
+              <b>Opt In Steps: </b>
+              <div style="display: flex; flex-direction: column;">
+                {auto_super_resolution.opt_in_steps.map((item) => (
+                  <p>{item}</p>
+                ))}
+            </div>
+          </li>
         </li>
       )
     }
