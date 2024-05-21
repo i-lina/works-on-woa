@@ -1,10 +1,9 @@
 ---
-name: Hearthstone
-categories: [cardandboard]
+name: "Hearthstone"
+categories: [unknown]
 publisher: Blizzard Entertainment
-compatibility: runs
-overall_status: passing
-device_configuration: Surface Pro X or Surface Pro 9
-frame_rate: 60+ FPS
-date_tested: 2024-01-18
+compatibility: perfect
+frame_rate: 0.0 FPS
+date_tested: 2023-11-01
+os_version: "0.0"
 ---
