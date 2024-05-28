@@ -25,21 +25,21 @@ for file in os.listdir(directory):
         app_cat[key] = os.path.splitext(filename)[0]
         f.close()
 
-df = pd.read_excel('data.xlsx')
+df = pd.read_excel('sample.xlsx')
 for i, row in df.iterrows():
 
     d = row.to_dict()
-    ver = str(d['VersionFrom'])
+    ver = str(d['Version'])
     compat = d['Compatibility']
     if compat == 'no' and (ver == 'TBD' or ver == 'NA'):
         continue
 
-    name = re.sub('[^A-Za-z0-9]+', '', row['name'])
+    name = re.sub('[^A-Za-z0-9]+', '', row['App Name'])
     name.replace('\'','')
     file = "./out/" + name + ".md"
     f = open(file, "w")
     f.write('---')
-    f.write('\nname: ' + '"' + d['name'] + '"')
+    f.write('\nname: ' + '"' + d['App Name'] + '"')
     #f.write('\nicon: ')
     category = str(d['Category'])
     if category == '' or category == 'nan':
@@ -52,12 +52,13 @@ for i, row in df.iterrows():
         f.write('\nlink: ' + str(d['link']))
     f.write('\ncompatibility: ' + str(d['Compatibility']))
     if not (ver == 'TBD' or ver == 'NA') :
-        f.write('\nversionFrom: \"' + str(d['VersionFrom']) + '\"')
+        f.write('\nversion: \"' + str(d['Version']) + '\"')
     f.write('\ntype: applications')
-    notes = str(d['Notes'])
-    if notes == 'nan':
-        notes = ''
-    f.write('\n---\n\n')
-    f.write(notes)
+    if 'Notes' in d:
+        notes = str(d['Notes'])
+        if notes == 'nan':
+            notes = ''
+        f.write('\n---\n\n')
+        f.write(notes)
     f.close()
 
